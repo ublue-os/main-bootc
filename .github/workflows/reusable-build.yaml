@@ -8,6 +8,7 @@ on:
         type: string
 env:
   IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+  ARCHS: "arm64, amd64"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}-${{ inputs.fedora_version }}
@@ -148,6 +149,7 @@ jobs:
         id: build_image
         uses: redhat-actions/buildah-build@v2
         with:
+          archs: ${{ env.ARCHS }}
           containerfiles: |
             ./Containerfile
           image: ${{ env.IMAGE_NAME }}
