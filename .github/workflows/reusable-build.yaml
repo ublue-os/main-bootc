@@ -8,7 +8,6 @@ on:
         type: string
 env:
   IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
-  ARCHS: "arm64, amd64"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}-${{ inputs.fedora_version }}
@@ -143,6 +142,9 @@ jobs:
             # pull the base image used for FROM in containerfile so
             # we can retry on that unfortunately common failure case
             podman pull quay.io/fedora/fedora-bootc:${{ matrix.fedora_version }}
+
+      - name: Setup qemu
+        uses: docker/setup-qemu-action@v2
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
