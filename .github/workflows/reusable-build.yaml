@@ -30,7 +30,7 @@ jobs:
           - base
 
     steps:
-      # Checkout push-to-registry action GitHub repository
+      # Checkout GitHub repository
       - name: Checkout Push to Registry action
         uses: actions/checkout@v4
 
@@ -134,13 +134,21 @@ jobs:
             fi
             echo "SOURCE_IMAGE_VERSION=$ver" >> $GITHUB_ENV
 
+      # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
+      # https://github.com/macbre/push-to-ghcr/issues/12
+      - name: Lowercase Registry
+        id: registry_case
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: ${{ env.IMAGE_REGISTRY }}
+
       # Generate image metadata
       - name: Image Metadata
         uses: docker/metadata-action@v5
         id: meta
         with:
           images: |
-            ${{ env.IMAGE_NAME }}
+            ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}
           labels: |
             org.opencontainers.image.title=${{ env.IMAGE_NAME }}
             org.opencontainers.image.version=${{ env.SOURCE_IMAGE_VERSION }}
