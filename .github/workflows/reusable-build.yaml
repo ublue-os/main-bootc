@@ -121,7 +121,7 @@ jobs:
 
       - name: Get current version
         id: labels
-        uses: Wandalen/wretry.action@v3.4.0
+        uses: Wandalen/wretry.action@v3.5.0
         with:
           attempt_limit: 3
           attempt_delay: 15000
@@ -159,7 +159,7 @@ jobs:
             ${{ env.METADATA_TAGS }}
 
       - name: Pull base image
-        uses: Wandalen/wretry.action@v3.4.0
+        uses: Wandalen/wretry.action@v3.5.0
         with:
           attempt_limit: 3
           attempt_delay: 15000
