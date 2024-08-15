@@ -28,6 +28,8 @@ jobs:
           - ${{ inputs.fedora_version }}
         image_name:
           - base
+          - silverblue
+          - kinoite
 
     steps:
       # Checkout GitHub repository
@@ -187,7 +189,7 @@ jobs:
           platforms: linux/aarch64, linux/x86_64
           build-args: |
             IMAGE_NAME=${{ matrix.image_name }}
-            FEDORA_MAJOR_VERSION=${{ matrix.fedora_version }}
+            FEDORA_VERSION=${{ matrix.fedora_version }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ steps.meta.outputs.tags }}
 
