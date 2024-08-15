@@ -28,17 +28,13 @@ jobs:
           - ${{ inputs.fedora_version }}
         image_name:
           - base
+          - silverblue
+          - kinoite
 
     steps:
       # Checkout GitHub repository
       - name: Checkout Push to Registry action
         uses: actions/checkout@v4
-
-      - name: Setup qemu
-        uses: docker/setup-qemu-action@v3
-
-      - name: Setup buildx
-        uses: docker/setup-buildx-action@v3
 
       - name: Matrix Variables
         shell: bash
@@ -158,16 +154,6 @@ jobs:
           tags: |
             ${{ env.METADATA_TAGS }}
 
-      - name: Pull base image
-        uses: Wandalen/wretry.action@v3.5.0
-        with:
-          attempt_limit: 3
-          attempt_delay: 15000
-          command: |
-            # pull the base image used for FROM in containerfile so
-            # we can retry on that unfortunately common failure case
-            docker pull quay.io/fedora/fedora-bootc:${{ matrix.fedora_version }}
-
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         if: github.event_name != 'pull_request'
@@ -184,10 +170,10 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           context: .
           file: ./Containerfile
-          platforms: linux/aarch64, linux/x86_64
+          platforms: linux/x86_64
           build-args: |
             IMAGE_NAME=${{ matrix.image_name }}
-            FEDORA_MAJOR_VERSION=${{ matrix.fedora_version }}
+            FEDORA_VERSION=${{ matrix.fedora_version }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: ${{ steps.meta.outputs.tags }}
 
