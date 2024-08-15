@@ -160,16 +160,6 @@ jobs:
           tags: |
             ${{ env.METADATA_TAGS }}
 
-      - name: Pull base image
-        uses: Wandalen/wretry.action@v3.5.0
-        with:
-          attempt_limit: 3
-          attempt_delay: 15000
-          command: |
-            # pull the base image used for FROM in containerfile so
-            # we can retry on that unfortunately common failure case
-            docker pull quay.io/fedora/fedora-bootc:${{ matrix.fedora_version }}
-
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         if: github.event_name != 'pull_request'
