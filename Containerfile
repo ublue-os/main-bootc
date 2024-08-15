@@ -1,4 +1,3 @@
-ARG IMAGE_NAME="${IMAGE_NAME:-base}"
 ARG BASE_IMAGE="quay.io/fedora/fedora-bootc"
 ARG FEDORA_VERSION="${FEDORA_VERSION:-40}"
 ARG FEDORA_EDITION="${FEDORA_EDITION:-silverblue}"
