@@ -5,6 +5,9 @@ on:
   schedule:
     - cron: '5 15 * * *'  # 3pm-ish UTC everyday (timed against official fedora container pushes)
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
