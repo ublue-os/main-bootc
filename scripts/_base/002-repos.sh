@@ -27,3 +27,16 @@ repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 EOF
+
+cat << EOF > /etc/yum.repos.d/ublue-os-staging.repo
+[copr:copr.fedorainfracloud.org:ublue-os:staging]
+name=Copr repo for staging owned by ublue-os
+baseurl=https://download.copr.fedorainfracloud.org/results/ublue-os/staging/fedora-\$releasever-\$basearch/
+type=rpm-md
+skip_if_unavailable=True
+gpgcheck=1
+gpgkey=https://download.copr.fedorainfracloud.org/results/ublue-os/staging/pubkey.gpg
+repo_gpgcheck=0
+enabled=1
+enabled_metadata=1
+EOF
