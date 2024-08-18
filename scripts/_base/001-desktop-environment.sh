@@ -2,11 +2,13 @@
 
 set -euox pipefail
 
-excludes=()
+excludes=(
+    "@gnome-desktop"
+)
 
 # Make excludes a comma-separated string
 excludes=$(IFS=, ; echo "${excludes[*]}")
 
 # Install the base-graphical meta-package
-dnf install -y @base-graphical \
+dnf install -y @base-graphical @workstation-product-environment \
     --exclude "${excludes}"
