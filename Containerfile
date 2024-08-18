@@ -8,6 +8,7 @@ ARG FEDORA_VERSION
 ARG FEDORA_EDITION
 
 COPY scripts/ /tmp/scripts
+COPY packages.json /tmp/packages.json
 
 RUN chmod +x /tmp/scripts/*.sh /tmp/scripts/_${FEDORA_EDITION}/*.sh && \
     /tmp/scripts/setup.sh --version ${FEDORA_VERSION} --base ${FEDORA_EDITION} && \

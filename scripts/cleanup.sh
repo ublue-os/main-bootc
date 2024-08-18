@@ -2,6 +2,9 @@
 
 set -euox pipefail
 
+# Clear directories
+rm -rf /tmp/*
+
 # Cleanup DNF
 dnf clean all
 

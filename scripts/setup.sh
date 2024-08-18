@@ -2,13 +2,13 @@
 
 set -euox pipefail
 
-BASE=""
+DESKTOP_ENVIRONMENT=""
 FEDORA_VERSION=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --base)
-      BASE="$2"
+    --desktop)
+      DESKTOP_ENVIRONMENT="$2"
       shift 2
       ;;
     --version)
@@ -22,8 +22,8 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [[ -z "$BASE" ]]; then
-  echo "--base flag is required"
+if [[ -z "$DESKTOP_ENVIRONMENT" ]]; then
+  echo "--desktop flag is required"
   exit 1
 fi
 
@@ -35,16 +35,16 @@ fi
 for script in /tmp/scripts/_base/*.sh; do
   if [[ -f "$script" ]]; then
     echo "Running $script"
-    bash "$script" --version "$FEDORA_VERSION"
+    bash "$script" --version "$FEDORA_VERSION" --desktop $DESKTOP_ENVIRONMENT
   fi
 done
 
 # If the image is BASE, then we don't need to run the same scripts again
-if [[ "$BASE" == "base" ]]; then
+if [[ "$DESKTOP_ENVIRONMENT" == "base" ]]; then
   exit 0
 fi
 
-for script in /tmp/scripts/_$BASE/*.sh; do
+for script in /tmp/scripts/_$DESKTOP_ENVIRONMENT/*.sh; do
   if [[ -f "$script" ]]; then
     echo "Running $script"
     bash "$script" --version "$FEDORA_VERSION"
