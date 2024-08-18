@@ -18,7 +18,7 @@ sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/fedora-cisco-openh264.repo
 cat << EOF  > /etc/yum.repos.d/kylegospo-oversteer.repo
 [copr:copr.fedorainfracloud.org:kylegospo:oversteer]
 name=Copr repo for oversteer owned by kylegospo
-baseurl=https://download.copr.fedorainfracloud.org/results/kylegospo/oversteer/fedora-$releasever-$basearch/
+baseurl=https://download.copr.fedorainfracloud.org/results/kylegospo/oversteer/fedora-\$releasever-\$basearch/
 type=rpm-md
 skip_if_unavailable=True
 gpgcheck=1
