@@ -43,5 +43,5 @@ excludes=(
     "PackageKit*"
 )
 
-dnf install -y @gnome-desktop --exclude "${excludes[*]}"
+dnf install -y @gnome-desktop --exclude "${excludes[*]}" --skip-broken
 systemctl enable gdm.service
