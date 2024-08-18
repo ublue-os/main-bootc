@@ -48,13 +48,12 @@ if [[ "${#EXCLUDED_PACKAGES[@]}" -gt 0 ]]; then
     EXCLUDED_PACKAGES=($(rpm -qa --queryformat='%{NAME} ' ${EXCLUDED_PACKAGES[@]}))
 fi
 
-# simple case to install where no packages need excluding
-if [[ "${#INCLUDED_PACKAGES[@]}" -gt 0 ]]; then
-    dnf install ${INCLUDED_PACKAGES[@]}
+if [[ "${#EXCLUDED_PACKAGES[@]}" -gt 0 ]]; then
+    dnf remove -y ${EXCLUDED_PACKAGES[@]}
 fi
 
-if [[ "${#EXCLUDED_PACKAGES[@]}" -gt 0 ]]; then
-    dnf remove ${EXCLUDED_PACKAGES[@]}
+if [[ "${#INCLUDED_PACKAGES[@]}" -gt 0 ]]; then
+    dnf install -y ${INCLUDED_PACKAGES[@]}
 fi
 
 # check if any excluded packages are still present
@@ -69,5 +68,5 @@ fi
 
 # remove any excluded packages which are still present on image
 if [[ "${#EXCLUDED_PACKAGES[@]}" -gt 0 ]]; then
-    dnf remove ${EXCLUDED_PACKAGES[@]}
+    dnf remove -y ${EXCLUDED_PACKAGES[@]}
 fi
