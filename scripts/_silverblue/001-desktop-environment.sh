@@ -4,7 +4,6 @@ set -euox pipefail
 
 # Install the desktop environment
 excludes=(
-
     "baobab"
     "cheese"
     "evince"
@@ -40,6 +39,8 @@ excludes=(
     "totem"
     "totem-nautilus"
     "traceroute"
+
+    "packagekit*"
 )
 
 dnf install -y @gnome-desktop --exclude "${excludes[*]}"
