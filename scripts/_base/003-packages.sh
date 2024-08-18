@@ -49,19 +49,12 @@ if [[ "${#EXCLUDED_PACKAGES[@]}" -gt 0 ]]; then
 fi
 
 # simple case to install where no packages need excluding
-if [[ "${#INCLUDED_PACKAGES[@]}" -gt 0 && "${#EXCLUDED_PACKAGES[@]}" -eq 0 ]]; then
-    rpm-ostree install \
-        ${INCLUDED_PACKAGES[@]}
+if [[ "${#INCLUDED_PACKAGES[@]}" -gt 0 ]]; then
+    dnf install ${INCLUDED_PACKAGES[@]}
+fi
 
-# install/excluded packages both at same time
-elif [[ "${#INCLUDED_PACKAGES[@]}" -gt 0 && "${#EXCLUDED_PACKAGES[@]}" -gt 0 ]]; then
-    rpm-ostree override remove \
-        ${EXCLUDED_PACKAGES[@]} \
-        $(printf -- "--install=%s " ${INCLUDED_PACKAGES[@]})
-
-else
-    echo "No packages to install."
-
+if [[ "${#EXCLUDED_PACKAGES[@]}" -gt 0 ]]; then
+    dnf remove ${EXCLUDED_PACKAGES[@]}
 fi
 
 # check if any excluded packages are still present
@@ -76,6 +69,5 @@ fi
 
 # remove any excluded packages which are still present on image
 if [[ "${#EXCLUDED_PACKAGES[@]}" -gt 0 ]]; then
-    rpm-ostree override remove \
-        ${EXCLUDED_PACKAGES[@]}
+    dnf remove ${EXCLUDED_PACKAGES[@]}
 fi
