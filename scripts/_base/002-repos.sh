@@ -13,7 +13,7 @@ rpm-ostree install \
   --uninstall=rpmfusion-free-release-$(rpm -E %fedora)-1.noarch  \
   --uninstall=rpmfusion-nonfree-release-$(rpm -E %fedora)-1.noarch
 
-sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/fedora-{updates-archive,cisco-openh264}.repo
+sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/fedora-cisco-openh264.repo
 
 cat << EOF  > /etc/yum.repos.d/kylegospo-oversteer.repo
 [copr:copr.fedorainfracloud.org:kylegospo:oversteer]
