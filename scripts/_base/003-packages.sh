@@ -32,6 +32,8 @@ if [[ -z "$FEDORA_VERSION" ]]; then
   exit 1
 fi
 
+echo "Installing packages for $DESKTOP_ENVIRONMENT"
+
 # build list of all packages requested for inclusion
 INCLUDED_PACKAGES=($(jq -r "[(.all.include | (.all, select(.\"$DESKTOP_ENVIRONMENT\" != null).\"$DESKTOP_ENVIRONMENT\")[]), \
                              (select(.\"$FEDORA_VERSION\" != null).\"$FEDORA_VERSION\".include | (.all, select(.\"$DESKTOP_ENVIRONMENT\" != null).\"$DESKTOP_ENVIRONMENT\")[])] \
