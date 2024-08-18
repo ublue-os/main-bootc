@@ -3,5 +3,5 @@
 set -euox pipefail
 
 # Install the desktop environment
-dnf install -y @gnome-desktop
+dnf install -y @workstation-product-environment
 systemctl enable gdm.service
