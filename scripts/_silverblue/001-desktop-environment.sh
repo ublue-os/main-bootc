@@ -40,7 +40,7 @@ excludes=(
     "totem-nautilus"
     "traceroute"
 
-    "packagekit*"
+    "PackageKit*"
 )
 
 dnf install -y @gnome-desktop --exclude "${excludes[*]}"
