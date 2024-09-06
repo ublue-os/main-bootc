@@ -47,7 +47,7 @@ jobs:
         uses: ublue-os/remove-unwanted-software@517622d6452028f266b7ba4cc9a123b5f58a6b53 # v7
 
       - name: Install Just
-        uses: extractions/setup-just@69d82fb0233557aec017ef13706851d0694e0f1d # v1
+        uses: extractions/setup-just@dd310ad5a97d8e7b41793f8ef055398d51ad4de6 # v2
 
       - name: Update podman
         run: |
