@@ -1,0 +1,3 @@
+[submodule "base-images"]
+	path = base-images
+	url = https://gitlab.com/fedora/bootc/base-images

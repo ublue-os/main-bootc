@@ -1,0 +1,36 @@
+# DO NOT EDIT! This content is generated from comps-sync.py
+packages:
+  - deepin-calculator
+  - deepin-calendar
+  - deepin-desktop
+  - deepin-editor
+  - deepin-file-manager
+  - deepin-icon-theme
+  - deepin-image-viewer
+  - deepin-picker
+  - deepin-screenshot
+  - deepin-system-monitor
+  - firewall-config
+  - glx-utils
+  - mesa-dri-drivers
+  - mesa-vulkan-drivers
+  - xorg-x11-drv-amdgpu
+  - xorg-x11-drv-ati
+  - xorg-x11-drv-evdev
+  - xorg-x11-drv-fbdev
+  - xorg-x11-drv-libinput
+  - xorg-x11-drv-nouveau
+  - xorg-x11-drv-qxl
+  - xorg-x11-drv-wacom
+  - xorg-x11-server-Xorg
+  - xorg-x11-xauth
+  - xorg-x11-xinit
+packages-x86_64:
+  - chromium
+  - xorg-x11-drv-intel
+  - xorg-x11-drv-openchrome
+  - xorg-x11-drv-vesa
+  - xorg-x11-drv-vmware
+packages-aarch64:
+  - chromium
+  - xorg-x11-drv-armsoc

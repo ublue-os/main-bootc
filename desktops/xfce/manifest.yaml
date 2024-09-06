@@ -1,0 +1,16 @@
+ref: fedora/${releasever}/${basearch}/xfce
+rojig:
+  name: fedora-xfce
+  summary: "Fedora Xfce Atomic"
+  license: MIT
+
+include:
+  - ../base/manifest.yaml
+  - ./packages-desktop-xfce.yaml
+
+packages:
+  - fedora-release-xfce
+  # Generic release sub package for desktop variants
+  - fedora-release-ostree-desktop
+  # Portals for Flatpak
+  - xdg-desktop-portal-gtk

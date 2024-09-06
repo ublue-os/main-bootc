@@ -1,0 +1,16 @@
+ref: fedora/${releasever}/${basearch}/deepin
+rojig:
+  name: fedora-deepin
+  summary: "Fedora Deepin Atomic"
+  license: MIT
+
+include:
+  - ../base/manifest.yaml
+  - ./packages-desktop-deepin.yaml
+
+packages:
+  # Generic release package for desktop variants
+  - fedora-release
+  - fedora-release-ostree-desktop
+  # GUI to manage updates & Flatpaks
+  - gnome-software

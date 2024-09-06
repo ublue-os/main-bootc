@@ -1,0 +1,34 @@
+ref: fedora/${releasever}/${basearch}/silverblue
+rojig:
+  name: fedora-silverblue
+  summary: "Fedora Silverblue Atomic"
+  license: MIT
+
+include:
+  - ../base/manifest.yaml
+  - ./packages-desktop-silverblue.yaml
+
+packages:
+  - fedora-release-silverblue
+  - desktop-backgrounds-gnome
+  - gnome-shell-extension-background-logo
+  - pinentry-gnome3
+  # Included for now to have layered Qt5 applications use a constistent style
+  # Manually included here as it is excluded from the workstation-product group
+  - qadwaitadecorations-qt5
+  # Include evince-thumbnailer otherwise PDF thumbnails won't work in Nautilus
+  # https://github.com/fedora-silverblue/issue-tracker/issues/98
+  - evince-thumbnailer
+  # Include evince-previewer otherwise print previews are broken in Evince
+  # https://github.com/fedora-silverblue/issue-tracker/issues/122
+  - evince-previewer
+  # Include totem-video-thumbnailer for video thumbnailing in Nautilus
+  # https://pagure.io/fedora-workstation/issue/168
+  - totem-video-thumbnailer
+  # Make sure that GNOME Software's rpm-ostree plugin is always installed
+  - gnome-software-rpm-ostree
+
+# Make sure the following are not pulled in when Recommended by other packages
+exclude-packages:
+  # Exclude GNOME Software's langpack plugin to avoid layering langpacks on Silverblue
+  - gnome-software-fedora-langpacks
