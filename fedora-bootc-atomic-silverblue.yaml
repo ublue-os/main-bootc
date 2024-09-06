@@ -7,10 +7,10 @@ repos:
   - updates
 
 metadata:
-  name: fedora-bootc-atomic-gnome
-  summary: Fedora Bootable Atomic GNOME
+  name: fedora-bootc-atomic-silverblue
+  summary: Fedora Bootable Atomic Silverblue
 
 include:
   - base-images/tier-0/kernel.yaml
   - base-images/tier-0/manifest.yaml
-  - desktops/gnome/manifest.yaml
+  - desktops/silverblue/manifest.yaml

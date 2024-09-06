@@ -7,10 +7,10 @@ repos:
   - updates
 
 metadata:
-  name: fedora-bootc-atomic-kde
-  summary: Fedora Bootable Atomic KDE
+  name: fedora-bootc-atomic-kinoite
+  summary: Fedora Bootable Atomic Kinoite
 
 include:
   - base-images/tier-0/kernel.yaml
   - base-images/tier-0/manifest.yaml
-  - desktops/kde/manifest.yaml
+  - desktops/kinoite/manifest.yaml
