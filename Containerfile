@@ -1,15 +1,17 @@
-ARG BASE_IMAGE="quay.io/fedora/fedora-bootc"
-ARG FEDORA_VERSION="${FEDORA_VERSION:-40}"
-ARG FEDORA_EDITION="${FEDORA_EDITION:-silverblue}"
+FROM quay.io/fedora/fedora:40 as repos
 
-FROM ${BASE_IMAGE}:${FEDORA_VERSION}
+FROM quay.io/centos-bootc/bootc-image-builder:latest as builder
+ARG MANIFEST=fedora-bootc-full.yaml
 
-ARG FEDORA_VERSION
-ARG FEDORA_EDITION
+COPY --from=repos /etc/dnf/vars /etc/dnf/vars
+COPY --from=repos /etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-* /etc/pki/rpm-gpg
 
-COPY scripts/ /tmp/scripts
-COPY packages.json /tmp/packages.json
+COPY . /src
+WORKDIR /src
+RUN rm -vf /src/*.repo
+COPY --from=repos /etc/yum.repos.d/*.repo /src
+RUN --mount=type=cache,target=/workdir --mount=type=bind,rw=true,src=.,dst=/buildcontext,bind-propagation=shared rpm-ostree compose image \
+  --image-config fedora-bootc-config.json --cachedir=/workdir --format=ociarchive --initialize ${MANIFEST} /buildcontext/out.ociarchive
 
-RUN chmod +x /tmp/scripts/*.sh /tmp/scripts/_${FEDORA_EDITION}/*.sh && \
-    /tmp/scripts/setup.sh --version ${FEDORA_VERSION} --desktop ${FEDORA_EDITION} && \
-    /tmp/scripts/cleanup.sh --version ${FEDORA_VERSION} --desktop ${FEDORA_EDITION}
+FROM oci-archive:./out.ociarchive
+RUN --mount=type=bind,from=builder,src=.,target=/var/tmp --mount=type=bind,rw=true,src=.,dst=/buildcontext,bind-propagation=shared rm /buildcontext/out.ociarchive

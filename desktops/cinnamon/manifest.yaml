@@ -1,0 +1,15 @@
+ref: fedora/${releasever}/${basearch}/cinnamon
+rojig:
+  name: fedora-cinnamon
+  summary: "Fedora Cinnamon Atomic"
+  license: MIT
+
+include:
+  - ../base/manifest.yaml
+  - ./packages-desktop-cinnamon.yaml
+
+packages:
+  # Portals for Flatpak
+  - xdg-desktop-portal-gtk
+  # Include GUI to manage updates & Flatpaks
+  - gnome-software

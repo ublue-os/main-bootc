@@ -1,0 +1,22 @@
+ref: fedora/${releasever}/${basearch}/sway
+rojig:
+  name: fedora-sway
+  summary: "Fedora Sway Atomic"
+  license: MIT
+
+include:
+  - ../base/manifest.yaml
+  - ./packages-desktop-sway.yaml
+
+packages:
+  - fedora-release-sway-atomic
+  # explicitly list some defaults
+  - firefox
+
+exclude-packages:
+  # already excluded in comps-sync-exclude-list
+  - PackageKit-glib
+  - grubby
+  # nothing in the tree would use these
+  - tracker
+  - tracker-miners

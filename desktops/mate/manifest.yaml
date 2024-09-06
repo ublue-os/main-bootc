@@ -1,0 +1,18 @@
+ref: fedora/${releasever}/${basearch}/mate
+rojig:
+  name: fedora-mate
+  summary: "Fedora Mate Atomic"
+  license: MIT
+
+include:
+  - ../base/manifest.yaml
+  - ./packages-desktop-mate.yaml
+
+packages:
+  # Generic release sub package for desktop variants
+  - fedora-release-ostree-desktop
+  # Portals for Flatpak
+  - xdg-desktop-portal-gtk
+
+exclude-packages:
+  - python3-unbound
