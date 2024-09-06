@@ -21,6 +21,7 @@ jobs:
       packages: write
       id-token: write
     env:
+      IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/${{ matrix.images }}-bootc
       FEDORA_VERSION: 40
     strategy:
       fail-fast: false
@@ -36,8 +37,6 @@ jobs:
           - mate
           - sway
           - xfce
-    env:
-      IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/${{ matrix.images }}-bootc
     steps:
       - name: Checkout
         uses: actions/checkout@v4
