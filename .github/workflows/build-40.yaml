@@ -6,8 +6,8 @@ on:
     branches:
       - main
   schedule:
-    # Daily at 00:00 UTC
-    - cron: '0 0 * * *'
+    # Weekly on Monday at 00:00
+    - cron: '0 0 * * 1'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
