@@ -16,26 +16,6 @@ comps-sync:
         /app/comps-sync.py \
           /mnt/fedora-comps/comps-f${version}.xml.in --save
 
-build-minimal:
-    podman build \
-        --security-opt label=disable \
-        --cap-add=all \
-        --device /dev/fuse \
-        --no-cache \
-        --build-arg MANIFEST=./fedora-bootc-minimal.yaml \
-        -t localhost/fedora-bootc-minimal \
-        .
-
-build-full:
-    podman build \
-        --security-opt label=disable \
-        --cap-add=all \
-        --device /dev/fuse \
-        --no-cache \
-        --build-arg MANIFEST=./fedora-bootc-full.yaml \
-        -t localhost/fedora-bootc-full \
-        .
-
 build-atomic desktop:
     podman build \
         --security-opt label=disable \
