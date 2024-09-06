@@ -86,8 +86,7 @@ jobs:
       - name: Sign container image
         if: github.event_name != 'pull_request'
         run: |
-          cosign sign -y --key env://COSIGN_PRIVATE_KEY ${{ env.IMAGE_NAME }}@${{ github.sha }}
+          cosign sign -y --key env://COSIGN_PRIVATE_KEY ${{ env.IMAGE_NAME }}:${{ github.sha }}
         env:
-          TAGS: ${{ steps.build_image.outputs.digest }}
           COSIGN_EXPERIMENTAL: false
           COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
