@@ -63,12 +63,11 @@ jobs:
       - name: Build Image
         run: |
           just build-atomic ${{ matrix.images }}
-          podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:latest
           podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:${{ env.FEDORA_VERSION }}
           podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Run Image
-        run: podman run --rm -it ${{ env.IMAGE_NAME }}:latest bootc --help
+        run: podman run --rm -it ${{ env.IMAGE_NAME }}:${{ github.sha }} bootc --help
 
       - name: Push Image
         if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'schedule'
