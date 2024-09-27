@@ -22,7 +22,7 @@ jobs:
       id-token: write
     env:
       IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/${{ matrix.images }}-bootc
-      FEDORA_VERSION: 40
+      FEDORA_VERSION: 41
     strategy:
       fail-fast: false
       matrix:

@@ -1,4 +1,4 @@
-releasever: 40
+releasever: 41
 variables:
   distro: "fedora"
 

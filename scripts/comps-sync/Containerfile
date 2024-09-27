@@ -1,6 +1,6 @@
 # FROM python:3.10
 
-FROM fedora:40
+FROM fedora:41
 
 RUN dnf install -y python3 python3-pip
 RUN dnf install -y rpm-ostree
