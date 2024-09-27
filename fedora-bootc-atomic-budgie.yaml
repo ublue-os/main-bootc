@@ -1,4 +1,4 @@
-releasever: 40
+releasever: 41
 variables:
   distro: "fedora"
 
@@ -11,6 +11,6 @@ metadata:
   summary: Fedora Bootable Atomic Budgie
 
 include:
-  - base-images/tier-0/kernel.yaml
-  - base-images/tier-0/manifest.yaml
+  - base-images/tier-x/kernel.yaml
+  - base-images/tier-x/manifest.yaml
   - desktops/budgie/manifest.yaml
