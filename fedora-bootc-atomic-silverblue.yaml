@@ -11,6 +11,6 @@ metadata:
   summary: Fedora Bootable Atomic Silverblue
 
 include:
-  - base-images/tier-0/kernel.yaml
-  - base-images/tier-0/manifest.yaml
+  - base-images/tier-x/kernel.yaml
+  - base-images/tier-x/manifest.yaml
   - desktops/silverblue/manifest.yaml
